@@ -42,7 +42,9 @@ def expertSelector():
     print(l)
     for i in range(len(l)):
         s = l[i]
-        print('no:', str(s), expertList[s-1])
+        name = str(s)+'、'+expertList[s-1]
+        listb2.insert(END, name)
+        #print('no:', str(s), expertList[s-1])
 
 expertList = []
 

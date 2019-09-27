@@ -27,7 +27,7 @@ def processFile():
         for line in f.readlines():
             content = line.strip()
             expertList.append(content)
-    resImport.set(str(len(expertList)))
+    resImport.set(str(len(expertList))+'个专家')
 
     for i in range(len(expertList)):
         name = str(i+1)+'、'+expertList[i]
@@ -36,7 +36,10 @@ def processFile():
 
 
 def expertSelector():
+    #取抽取专家数量
     n= resNumber.get()
+    #清空listbox原有数据
+    listb2.delete(0, END)
     #print(n)
     l = random_list(1,len(expertList),int(n))
     print(l)
@@ -49,7 +52,7 @@ def expertSelector():
 expertList = []
 
 root = tk.Tk()
-root.geometry('600x300+600+200')
+root.geometry('600x300+500+200')
 root.title('专家随机抽取程序')
 root.resizable(FALSE, True)
 #创建一个标签(选择专家文件)
@@ -61,7 +64,7 @@ input_entry = Entry(root, width=55, textvariable=res)
 input_entry.grid(row=0, column=1,columnspan=3,sticky='W')
 resImport = StringVar()
 resImport.set('')
-input_entry = Entry(root, width=5, textvariable=resImport)
+input_entry = Entry(root, width=8, textvariable=resImport)
 input_entry.grid(row=0, column=4)
 #创建一个标签（抽取专家数量）
 input_file = Label(root, text='抽取专家数量：',font=('黑体',12),fg='blue')
@@ -90,7 +93,7 @@ scroll_1 = Scrollbar(root, command=listb.yview)
 listb.configure(yscrollcommand=scroll_1.set)
 scroll_1.grid(row=4, column=1, sticky=N+S+E)
 
-listb2 = Listbox(root)
+listb2 = Listbox(root,selectmode='multiple')
 listb2.grid(row=4, column=3)
 scroll_2 = Scrollbar(root, command=listb2.yview)
 listb2.configure(yscrollcommand=scroll_2.set)

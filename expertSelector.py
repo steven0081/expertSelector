@@ -17,6 +17,7 @@ def openfile():
     file_path = filedialog.askopenfilename()
     #print(file_path)
     res.set(file_path)
+    #导入专家姓名数据
     processFile()
 
 def processFile():
@@ -83,13 +84,15 @@ lb.grid(row=2, column=3)
 #  创建两个列表组件
 listb  = Listbox(root)
 listb.grid(row=4, column=1)
-scroll = Scrollbar(root, command=listb.yview)
-listb.configure(yscrollcommand=scroll.set)
-#scroll.pack(side=RIGHT, fill=Y)
-scroll.grid(row=4, column=1, sticky=N+S+E)
-#listb.pack(side=LEFT, fill=Y, expand=YES)
+scroll_1 = Scrollbar(root, command=listb.yview)
+listb.configure(yscrollcommand=scroll_1.set)
+scroll_1.grid(row=4, column=1, sticky=N+S+E)
+
 listb2 = Listbox(root)
 listb2.grid(row=4, column=3)
+scroll_2 = Scrollbar(root, command=listb2.yview)
+listb2.configure(yscrollcommand=scroll_2.set)
+scroll_2.grid(row=4, column=3, sticky=N+S+E)
 #打开窗口
 root.mainloop()
 

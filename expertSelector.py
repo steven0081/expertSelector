@@ -82,15 +82,14 @@ input_file.grid(row=1, column=0,sticky='W')
 resNumber = StringVar()
 input_entry = Entry(root, width=10, textvariable=resNumber)
 input_entry.grid(row=1, column=1,sticky='W')
-
 #button = Button(root, text='选择专家文件', width=10, command=openfile)
 #button.grid(row=2, column=3)
-#设置按钮
+#画按钮
 button = Button(root, text='导入专家文件', width=12, command=openfile, padx=2, pady=2)
 button.grid(row=1, column=2)
 button = Button(root, text='随机专家抽取', width=12, command=expertSelector, padx=2, pady=2)
 button.grid(row=1, column=3)
-
+#画两个列表控件
 lb = Label(root, text='导入专家列表',font=('黑体',8),fg='blue')
 lb.grid(row=2, column=1)
 lb = Label(root, text='抽中专家列表',font=('黑体',8),fg='blue')

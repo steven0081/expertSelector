@@ -9,11 +9,20 @@ def random_list(start,stop,length):
         length=int(length)
     start, stop = (int(start), int(stop)) if start <= stop else (int(stop), int(start))
     random_list = []
-    for i in range(length):
-        random_list.append(random.randint(start, stop))
+    #抽取随机数，并保证随机数中没有重复的数字
+    while len(random_list) < length:
+        flag = True
+        ran = random.randint(start, stop)
+        for i in range(len(random_list)):
+            if ran == random_list[i]:
+                flag = False
+        if flag == True:
+             random_list.append(ran)
+
     return random_list
 
 def openfile():
+    #打开选择文件窗口
     file_path = filedialog.askopenfilename()
     #print(file_path)
     res.set(file_path)
@@ -22,17 +31,17 @@ def openfile():
 
 def processFile():
     file = res.get()
-    print(file)
+    #print(file)
+    #逐行读取文件，并将文件内容写入列表变量中
     with open(file, 'r') as f:
         for line in f.readlines():
             content = line.strip()
             expertList.append(content)
-    resImport.set(str(len(expertList))+'个专家')
-
+    resImport.set(str(len(expertList))+'人')
+    #将专家信息写入列表控件中
     for i in range(len(expertList)):
         name = str(i+1)+'、'+expertList[i]
         listb.insert(END, name)
-
 
 
 def expertSelector():
@@ -42,7 +51,7 @@ def expertSelector():
     listb2.delete(0, END)
     #print(n)
     l = random_list(1,len(expertList),int(n))
-    print(l)
+    #print(l)
     for i in range(len(l)):
         s = l[i]
         name = str(s)+'、'+expertList[s-1]
@@ -77,9 +86,9 @@ input_entry.grid(row=1, column=1,sticky='W')
 #button = Button(root, text='选择专家文件', width=10, command=openfile)
 #button.grid(row=2, column=3)
 #设置按钮
-button = Button(root, text='导入专家文件', width=10, command=openfile, padx=2, pady=2)
+button = Button(root, text='导入专家文件', width=12, command=openfile, padx=2, pady=2)
 button.grid(row=1, column=2)
-button = Button(root, text='随机专家抽取', width=10, command=expertSelector, padx=2, pady=2)
+button = Button(root, text='随机专家抽取', width=12, command=expertSelector, padx=2, pady=2)
 button.grid(row=1, column=3)
 
 lb = Label(root, text='导入专家列表',font=('黑体',8),fg='blue')

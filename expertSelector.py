@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import *
+import tkinter.messagebox
 import random
 
 
@@ -42,7 +43,7 @@ def processFile():
         for line in f.readlines():
             content = line.strip()
             expertList.append(content)
-    resImport.set(str(len(expertList))+'人')
+    resImport.set(str(len(expertList)))
     #将专家信息写入列表控件中
     for i in range(len(expertList)):
         name = str(i+1)+'、'+expertList[i]
@@ -51,7 +52,10 @@ def processFile():
 
 def expertSelector():
     #取抽取专家数量
-    n= resNumber.get()
+    n = resNumber.get()
+    if int(n) > len(expertList) :
+        tk.messagebox.showinfo(title='错误', message='抽取专家数不能大于专家总数！')
+        return
     #清空listbox原有数据
     listb2.delete(0, END)
     #print(n)
@@ -61,7 +65,6 @@ def expertSelector():
         s = l[i]
         name = str(s)+'、'+expertList[s-1]
         listb2.insert(END, name)
-        #print('no:', str(s), expertList[s-1])
 
 expertList = []
 
@@ -78,14 +81,16 @@ input_entry = Entry(root, width=55, textvariable=res)
 input_entry.grid(row=0, column=1,columnspan=3,sticky='W')
 resImport = StringVar()
 resImport.set('')
-input_entry = Entry(root, width=8, textvariable=resImport)
+input_entry = Entry(root, width=6, textvariable=resImport)
 input_entry.grid(row=0, column=4)
+lb = Label(root, text='人',font=('黑体',9), fg='blue')
+lb.grid(row=0, column=4,sticky='e')
 #创建一个标签（抽取专家数量）
 input_file = Label(root, text='抽取专家数量：',font=('黑体',12),fg='blue')
 #让标签显示
 input_file.grid(row=1, column=0,sticky='W')
 resNumber = StringVar()
-input_entry = Entry(root, width=10, textvariable=resNumber)
+input_entry = Entry(root, width=8, textvariable=resNumber)
 input_entry.grid(row=1, column=1,sticky='W')
 #button = Button(root, text='选择专家文件', width=10, command=openfile)
 #button.grid(row=2, column=3)

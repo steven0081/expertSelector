@@ -31,6 +31,11 @@ def openfile():
 
 def processFile():
     file = res.get()
+    #清空列表变量
+    expertList.clear()
+    listb.delete(0, END)
+    resImport.set('')
+
     #print(file)
     #逐行读取文件，并将文件内容写入列表变量中
     with open(file, 'r') as f:

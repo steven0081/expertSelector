@@ -66,8 +66,9 @@ def expertSelector():
         name = str(s)+'、'+expertList[s-1]
         listb2.insert(END, name)
 
+#申明全局变量
 expertList = []
-
+#开始构建窗体
 root = tk.Tk()
 root.geometry('600x300+500+200')
 root.title('专家随机抽取程序')
@@ -100,9 +101,9 @@ button.grid(row=1, column=2)
 button = Button(root, text='随机专家抽取', width=12, command=expertSelector, padx=2, pady=2)
 button.grid(row=1, column=3)
 #画两个列表控件
-lb = Label(root, text='导入专家列表',font=('黑体',8),fg='blue')
+lb = Label(root, text='导入专家列表',font=('黑体',10),fg='blue')
 lb.grid(row=2, column=1)
-lb = Label(root, text='抽中专家列表',font=('黑体',8),fg='blue')
+lb = Label(root, text='抽中专家列表',font=('黑体',10),fg='blue')
 lb.grid(row=2, column=3)
 #  创建两个列表组件
 listb  = Listbox(root)

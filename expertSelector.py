@@ -87,7 +87,7 @@ input_entry.grid(row=0, column=4)
 lb = Label(root, text='人',font=('黑体',9), fg='blue')
 lb.grid(row=0, column=4,sticky='e')
 #创建一个标签（抽取专家数量）
-input_file = Label(root, text='抽取专家数量：',font=('黑体',12),fg='blue')
+input_file = Label(root, text='抽取专家数：',font=('黑体',12),fg='blue')
 #让标签显示
 input_file.grid(row=1, column=0,sticky='W')
 resNumber = StringVar()
